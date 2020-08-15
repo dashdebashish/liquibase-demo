@@ -1,8 +1,37 @@
-Demo Steps:
-==========
-- Show the Folder structure for best practices
-- Show how the Master YAML is calling all the SQL files
-- Explain about 
+- Folder structure for best practices
+======================================
+\---src
+    +---main
+    |   +---java
+    |   \---resources
+    |       |   liquibase.properties
+    |       |
+    |       \---liquibase
+    |           |   db.changelog-master.xml
+    |           |
+    |           +---ddl
+    |           |   +---storeprocedures
+    |           |   |       test-proceduce.sql
+    |           |   |
+    |           |   \---table
+    |           |           catalog.sql
+    |           |           item.sql
+    |           |           log.sql
+    |           |
+    |           \---dml
+    |                   insert.catalog.sql
+    |                   insert.item.sql
+	
+- Master YAML is calling all the SQL files
+======================================
+  <include  file="src/main/resources/liquibase/ddl/table/catalog.sql"/>   
+  <include  file="src/main/resources/liquibase/ddl/table/item.sql"/>
+  <include  file="src/main/resources/liquibase/ddl/storeprocedures/test-proceduce.sql"/> 
+  <include  file="src/main/resources/liquibase/dml/insert.catalog.sql"/>
+  <include  file="src/main/resources/liquibase/dml/insert.item.sql"/>
+  
+- SQL file attributes for changeset
+======================================
     "--liquibase formatted sql" 
     "--changeset Debashish:1"
 	--rollback 
@@ -13,7 +42,26 @@ Demo Steps:
       to execute the sql everytime when there is a change
 	  
 - MVN Plugin for liquibase in pom.xml
+======================================
 
+	<dependency>
+		<groupId>org.liquibase</groupId>
+		<artifactId>liquibase-core</artifactId>
+		<version>4.0.0</version>
+	</dependency>
+	
+<build>
+	<plugins>
+		<plugin>  
+			<groupId>org.liquibase</groupId>  
+			<artifactId>liquibase-maven-plugin</artifactId>  
+			<configuration>                    
+			  <propertyFile>src/main/resources/liquibase.properties</propertyFile>  
+			</configuration>
+		</plugin>
+	</plugins>
+</build>
+		
 - How to Trigger the Deployment
 =================================
 #To Delete All the Objects 
