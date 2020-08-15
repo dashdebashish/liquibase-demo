@@ -1,5 +1,6 @@
 - Folder structure for best practices
 
+
 \---src
     +---main
     |   +---java
@@ -21,6 +22,8 @@
     |           \---dml
     |                   insert.catalog.sql
     |                   insert.item.sql
+    
+    
 	
 - Master YAML is calling all the SQL files
 
@@ -63,7 +66,7 @@
 </build>
 		
 - How to Trigger the Deployment
-=================================
+
 #To Delete All the Objects 
 mvn liquibase:dropAll
 #To Install 
