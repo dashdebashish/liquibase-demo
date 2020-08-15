@@ -1,5 +1,5 @@
 - Folder structure for best practices
-======================================
+
 \---src
     +---main
     |   +---java
@@ -23,7 +23,7 @@
     |                   insert.item.sql
 	
 - Master YAML is calling all the SQL files
-======================================
+
   <include  file="src/main/resources/liquibase/ddl/table/catalog.sql"/>   
   <include  file="src/main/resources/liquibase/ddl/table/item.sql"/>
   <include  file="src/main/resources/liquibase/ddl/storeprocedures/test-proceduce.sql"/> 
@@ -31,7 +31,7 @@
   <include  file="src/main/resources/liquibase/dml/insert.item.sql"/>
   
 - SQL file attributes for changeset
-======================================
+
     "--liquibase formatted sql" 
     "--changeset Debashish:1"
 	--rollback 
@@ -42,7 +42,7 @@
       to execute the sql everytime when there is a change
 	  
 - MVN Plugin for liquibase in pom.xml
-======================================
+
 
 	<dependency>
 		<groupId>org.liquibase</groupId>
@@ -68,10 +68,7 @@
 mvn liquibase:dropAll
 #To Install 
 mvn liquibase:update
-# $$ is not recognised in liquibase so to be $$ to be replaced with'
-
-- Show the Generated tables created
-- Show the rollback
+#$$ is not recognised in liquibase so to be $$ to be replaced with'
 mvn liquibase:rollback -Dliquibase.rollbackCount=1
 mvn liquibase:rollback -Dliquibase.rollbackDate= 2020-07-20
 
